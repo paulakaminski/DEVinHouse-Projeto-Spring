@@ -1,8 +1,8 @@
 package tech.devinhouse.pharmacymanagement.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import tech.devinhouse.pharmacymanagement.controller.dto.UsuarioRequest;
+import tech.devinhouse.pharmacymanagement.controller.dto.UsuarioResponse;
 import tech.devinhouse.pharmacymanagement.dataprovider.entity.UsuarioEntity;
 import tech.devinhouse.pharmacymanagement.service.UsuarioService;
 
@@ -18,9 +18,18 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping
-    public List<UsuarioEntity> teste() {
-        return usuarioService.encontrarUsuarios();
+    @GetMapping("/login")
+    public UsuarioResponse loginUsuario (@RequestBody UsuarioRequest usuarioRequest) {
+        UsuarioResponse usuarioResponse = usuarioService.encontrarUsuario(usuarioRequest);
+
+        return usuarioResponse;
+    }
+
+    @PostMapping("/cadastro")
+    public UsuarioResponse cadastrarNovoUsuario (@RequestBody UsuarioRequest usuarioRequest) {
+        UsuarioResponse usuarioResponse = usuarioService.criarNovoUsuario(usuarioRequest);
+
+        return usuarioResponse;
     }
 
 }

@@ -23,4 +23,9 @@ public class UsuarioEntity {
 
     @NotNull
     private String senha;
+
+    public UsuarioEntity(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
 }
