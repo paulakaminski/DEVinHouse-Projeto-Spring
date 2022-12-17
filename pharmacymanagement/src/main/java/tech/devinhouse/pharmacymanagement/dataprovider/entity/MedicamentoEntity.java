@@ -32,9 +32,23 @@ public class MedicamentoEntity {
 
     @Column(name = "preco_unitario")
     @NotNull
-    private String precoUnitario;
+    private Double precoUnitario;
 
     @NotNull
     private String tipo;
+
+    public MedicamentoEntity(String nome
+            , String laboratorio
+            , String dosagem
+            , String descricao
+            , Double precoUnitario
+            , String tipo) {
+        this.nome = nome;
+        this.laboratorio = laboratorio;
+        this.dosagem = dosagem;
+        this.descricao = descricao;
+        this.precoUnitario = precoUnitario;
+        this.tipo = tipo;
+    }
 
 }
