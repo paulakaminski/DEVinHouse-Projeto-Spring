@@ -34,9 +34,8 @@ public class EnderecoEntity {
     @NotNull
     private String localidade;
 
-    @Column(name  = "uf")
     @NotNull
-    private String estado;
+    private String uf;
 
     private String complemento;
 
@@ -46,4 +45,14 @@ public class EnderecoEntity {
     @NotNull
     private String longitude;
 
+    public EnderecoEntity(String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String complemento, String latitude, String longitude) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }

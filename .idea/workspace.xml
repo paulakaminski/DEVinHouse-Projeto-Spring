@@ -1,25 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa57cb2d-67d4-4859-b95c-1998f98455b3" name="Changes" comment="" />
+    <list default="true" id="fa57cb2d-67d4-4859-b95c-1998f98455b3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/PharmacymanagementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/PharmacymanagementApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/FarmaciaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/FarmaciaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/EnderecoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/EnderecoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/FarmaciaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/FarmaciaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/FarmaciaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/FarmaciaService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2J0NTKnHfrkBgXw30LxztJjg0lR" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Paula F Kaminski/Desktop/DEVinHouse/Módulo 02/Projeto 02 correto"
+    "last_opened_file_path": "C:/Users/Paula F Kaminski/Desktop/DEVinHouse/Módulo 02/Projeto 02 correto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "83e12ae4bdd13c6c40931d9adb22726f"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="PharmacymanagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pharmacymanagement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tech.devinhouse.pharmacymanagement.PharmacymanagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -29,10 +89,24 @@
       <option name="presentableId" value="Default" />
       <updated>1671211047318</updated>
       <workItem from="1671211049081" duration="198000" />
+      <workItem from="1673272570130" duration="153000" />
+      <workItem from="1673272750898" duration="853000" />
+      <workItem from="1673273646169" duration="5397000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
