@@ -45,4 +45,13 @@ public class FarmaciaEntity {
     @NotNull
     private EnderecoEntity enderecoEntity;
 
+    public FarmaciaEntity(String razaoSocial, String cnpj, String nomeFantasia, String email, String telefoneFixo, String telefoneCelular, EnderecoEntity enderecoEntity) {
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.nomeFantasia = nomeFantasia;
+        this.email = email;
+        this.telefoneFixo = telefoneFixo;
+        this.telefoneCelular = telefoneCelular;
+        this.enderecoEntity = enderecoEntity;
+    }
 }
