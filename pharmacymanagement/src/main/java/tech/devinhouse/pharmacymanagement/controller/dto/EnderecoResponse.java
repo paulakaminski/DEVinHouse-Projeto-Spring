@@ -17,6 +17,4 @@ public class EnderecoResponse {
     private String localidade;
     private String uf;
     private String complemento;
-    private String latitude;
-    private String longitude;
 }

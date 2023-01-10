@@ -39,4 +39,17 @@ public class FarmaciaController {
         return new ResponseEntity<>(farmaciaResponse, HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public FarmaciaResponse atualizarFarmaciaPorId(@PathVariable("id") Long id, @RequestBody FarmaciaRequest farmaciaRequest) {
+        FarmaciaResponse farmaciaResponse = farmaciaService.atualizarFarmaciaPorId(id, farmaciaRequest);
+
+        return farmaciaResponse;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletarFarmaciaPorId(@PathVariable("id") Long id) {
+        farmaciaService.deletarFarmaciaPorId(id);
+
+    }
+
 }

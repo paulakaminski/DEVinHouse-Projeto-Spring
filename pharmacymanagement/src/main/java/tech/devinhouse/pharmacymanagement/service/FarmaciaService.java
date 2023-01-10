@@ -45,9 +45,7 @@ public class FarmaciaService {
                                 , farmaciaEntity.getEnderecoEntity().getBairro()
                                 , farmaciaEntity.getEnderecoEntity().getLocalidade()
                                 , farmaciaEntity.getEnderecoEntity().getUf()
-                                , farmaciaEntity.getEnderecoEntity().getComplemento()
-                                , farmaciaEntity.getEnderecoEntity().getLatitude()
-                                , farmaciaEntity.getEnderecoEntity().getLongitude()))
+                                , farmaciaEntity.getEnderecoEntity().getComplemento()))
             );
 
         }
@@ -70,9 +68,7 @@ public class FarmaciaService {
                     , farmaciaEntity.getEnderecoEntity().getBairro()
                     , farmaciaEntity.getEnderecoEntity().getLocalidade()
                     , farmaciaEntity.getEnderecoEntity().getUf()
-                    , farmaciaEntity.getEnderecoEntity().getComplemento()
-                    , farmaciaEntity.getEnderecoEntity().getLatitude()
-                    , farmaciaEntity.getEnderecoEntity().getLongitude())
+                    , farmaciaEntity.getEnderecoEntity().getComplemento())
         );
     }
 
@@ -81,8 +77,6 @@ public class FarmaciaService {
         EnderecoResponse enderecoResponse = cepService.buscaCep(farmaciaRequest.getCep());
         enderecoResponse.setNumero(farmaciaRequest.getNumero());
         enderecoResponse.setComplemento(farmaciaRequest.getComplemento());
-        enderecoResponse.setLatitude(farmaciaRequest.getLatitude());
-        enderecoResponse.setLongitude(farmaciaRequest.getLongitude());
 
         EnderecoEntity enderecoEntity = enderecoRepository.save(
                 new EnderecoEntity(enderecoResponse.getCep()
@@ -92,8 +86,8 @@ public class FarmaciaService {
                         , enderecoResponse.getLocalidade()
                         , enderecoResponse.getUf()
                         , enderecoResponse.getComplemento()
-                        , enderecoResponse.getLatitude()
-                        , enderecoResponse.getLongitude())
+                        , farmaciaRequest.getLatitude()
+                        , farmaciaRequest.getLongitude())
         );
 
         FarmaciaEntity farmaciaEntity = farmaciaRepository.save(
@@ -112,17 +106,60 @@ public class FarmaciaService {
                 , farmaciaEntity.getEmail()
                 , farmaciaEntity.getTelefoneFixo()
                 , farmaciaEntity.getTelefoneCelular()
-                , new EnderecoResponse(farmaciaEntity.getEnderecoEntity().getCep()
-                , farmaciaEntity.getEnderecoEntity().getLogradouro()
-                , farmaciaEntity.getEnderecoEntity().getNumero()
-                , farmaciaEntity.getEnderecoEntity().getBairro()
-                , farmaciaEntity.getEnderecoEntity().getLocalidade()
-                , farmaciaEntity.getEnderecoEntity().getUf()
-                , farmaciaEntity.getEnderecoEntity().getComplemento()
-                , farmaciaEntity.getEnderecoEntity().getLatitude()
-                , farmaciaEntity.getEnderecoEntity().getLongitude())
+                , enderecoResponse
         );
 
+    }
+
+    public FarmaciaResponse atualizarFarmaciaPorId(Long id, FarmaciaRequest farmaciaRequest) {
+        FarmaciaEntity farmaciaEntity = farmaciaRepository.findById(id).get();
+
+        EnderecoEntity enderecoEntity = enderecoRepository.findById(farmaciaEntity.getEnderecoEntity().getId()).get();
+
+        EnderecoResponse enderecoResponse = cepService.buscaCep(farmaciaRequest.getCep());
+        enderecoResponse.setNumero(farmaciaRequest.getNumero());
+        enderecoResponse.setComplemento(farmaciaRequest.getComplemento());
+
+        enderecoEntity.setCep(enderecoResponse.getCep());
+        enderecoEntity.setLogradouro(enderecoResponse.getLogradouro());
+        enderecoEntity.setNumero(enderecoResponse.getNumero());
+        enderecoEntity.setBairro(enderecoResponse.getBairro());
+        enderecoEntity.setLocalidade(enderecoResponse.getLocalidade());
+        enderecoEntity.setUf(enderecoResponse.getUf());
+        enderecoEntity.setComplemento(enderecoResponse.getComplemento());
+        enderecoEntity.setLatitude(farmaciaRequest.getLatitude());
+        enderecoEntity.setLongitude(farmaciaRequest.getLongitude());
+
+        enderecoRepository.save(enderecoEntity);
+
+        farmaciaEntity.setRazaoSocial(farmaciaRequest.getRazaoSocial());
+        farmaciaEntity.setCnpj(farmaciaRequest.getCnpj());
+        farmaciaEntity.setNomeFantasia(farmaciaRequest.getNomeFantasia());
+        farmaciaEntity.setEmail(farmaciaRequest.getEmail());
+        farmaciaEntity.setTelefoneFixo(farmaciaEntity.getTelefoneFixo());
+        farmaciaEntity.setTelefoneCelular(farmaciaRequest.getTelefoneCelular());
+
+        farmaciaRepository.save(farmaciaEntity);
+
+        return new FarmaciaResponse(farmaciaEntity.getRazaoSocial()
+                , farmaciaEntity.getCnpj()
+                , farmaciaEntity.getNomeFantasia()
+                , farmaciaEntity.getEmail()
+                , farmaciaEntity.getTelefoneFixo()
+                , farmaciaEntity.getTelefoneCelular()
+                , enderecoResponse
+        );
+
+    }
+
+    public void deletarFarmaciaPorId(Long id) {
+        FarmaciaEntity farmaciaEntity = farmaciaRepository.findById(id).get();
+        EnderecoEntity enderecoEntity = enderecoRepository.findById(farmaciaEntity.getEnderecoEntity().getId()).get();
+
+        farmaciaRepository.deleteById(id);
+
+        enderecoRepository.deleteById(enderecoEntity.getId());
+        
     }
 
 }
