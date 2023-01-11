@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.devinhouse.pharmacymanagement.controller.dto.FarmaciaRequest;
 import tech.devinhouse.pharmacymanagement.controller.dto.FarmaciaResponse;
-import tech.devinhouse.pharmacymanagement.dataprovider.entity.FarmaciaEntity;
+import tech.devinhouse.pharmacymanagement.padroes.DefaultResponse;
 import tech.devinhouse.pharmacymanagement.service.FarmaciaService;
 
 import java.util.List;
@@ -21,35 +21,65 @@ public class FarmaciaController {
     }
 
     @GetMapping
-    public List<FarmaciaResponse> encontrarTodasAsFarmacias() {
-        return farmaciaService.encontrarTodasAsFarmacias();
+    public ResponseEntity<DefaultResponse> encontrarTodasAsFarmacias() {
+        List<FarmaciaResponse> responseList = farmaciaService.encontrarTodasAsFarmacias();
+
+        return new ResponseEntity<>(
+                new DefaultResponse<List<FarmaciaResponse>>(
+                        HttpStatus.OK.value()
+                        , "Dados encontrados com sucesso!"
+                        , responseList
+                ),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/{id}")
-    public FarmaciaResponse encontrarFarmaciaPorId(@PathVariable("id") Long id) {
+    public ResponseEntity<DefaultResponse> encontrarFarmaciaPorId(@PathVariable("id") Long id) {
         FarmaciaResponse farmaciaResponse = farmaciaService.encontrarFarmaciaPorId(id);
 
-        return farmaciaResponse;
+        return new ResponseEntity<>(
+                new DefaultResponse<FarmaciaResponse>(
+                        HttpStatus.OK.value()
+                        , "Dados encontrados com sucesso!"
+                        , farmaciaResponse
+                ),
+                HttpStatus.OK
+        );
     }
 
-    @PostMapping()
-    public ResponseEntity<FarmaciaResponse> salvarNovaFarmacia(@RequestBody FarmaciaRequest farmaciaRequest) {
+    @PostMapping("/cadastro")
+    public ResponseEntity<DefaultResponse> salvarNovaFarmacia(@RequestBody FarmaciaRequest farmaciaRequest) {
         FarmaciaResponse farmaciaResponse = farmaciaService.salvarNovaFarmacia(farmaciaRequest);
 
-        return new ResponseEntity<>(farmaciaResponse, HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                new DefaultResponse<FarmaciaResponse>(
+                        HttpStatus.CREATED.value()
+                        , "Farmácia cadastrada com sucesso!"
+                        , farmaciaResponse
+                ),
+                HttpStatus.CREATED
+        );
     }
 
-    @PutMapping("/{id}")
-    public FarmaciaResponse atualizarFarmaciaPorId(@PathVariable("id") Long id, @RequestBody FarmaciaRequest farmaciaRequest) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<DefaultResponse> atualizarFarmaciaPorId(@PathVariable("id") Long id, @RequestBody FarmaciaRequest farmaciaRequest) {
         FarmaciaResponse farmaciaResponse = farmaciaService.atualizarFarmaciaPorId(id, farmaciaRequest);
 
-        return farmaciaResponse;
+        return new ResponseEntity<>(
+                new DefaultResponse<FarmaciaResponse>(
+                        HttpStatus.OK.value()
+                        , "Cadastro de farmácia atualizado com sucesso!"
+                        , farmaciaResponse
+                ),
+                HttpStatus.OK
+        );
     }
 
-    @DeleteMapping("/{id}")
-    public void deletarFarmaciaPorId(@PathVariable("id") Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deletarFarmaciaPorId(@PathVariable("id") Long id) {
         farmaciaService.deletarFarmaciaPorId(id);
-
+        return ResponseEntity.accepted().build();
     }
 
 }

@@ -159,7 +159,7 @@ public class FarmaciaService {
         farmaciaRepository.deleteById(id);
 
         enderecoRepository.deleteById(enderecoEntity.getId());
-        
+
     }
 
 }

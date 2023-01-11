@@ -1,9 +1,12 @@
 package tech.devinhouse.pharmacymanagement.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.devinhouse.pharmacymanagement.controller.dto.UsuarioRequest;
 import tech.devinhouse.pharmacymanagement.controller.dto.UsuarioResponse;
 import tech.devinhouse.pharmacymanagement.dataprovider.entity.UsuarioEntity;
+import tech.devinhouse.pharmacymanagement.padroes.DefaultResponse;
 import tech.devinhouse.pharmacymanagement.service.UsuarioService;
 
 import java.util.List;
@@ -19,17 +22,31 @@ public class UsuarioController {
     }
 
     @GetMapping("/login")
-    public UsuarioResponse loginUsuario (@RequestBody UsuarioRequest usuarioRequest) {
+    public ResponseEntity<DefaultResponse> loginUsuario (@RequestBody UsuarioRequest usuarioRequest) {
         UsuarioResponse usuarioResponse = usuarioService.encontrarUsuario(usuarioRequest);
 
-        return usuarioResponse;
+        return new ResponseEntity<>(
+                new DefaultResponse<UsuarioResponse>(
+                        HttpStatus.OK.value()
+                        , "Usuário encontrado com sucesso!"
+                        , usuarioResponse
+                ),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping("/cadastro")
-    public UsuarioResponse cadastrarNovoUsuario (@RequestBody UsuarioRequest usuarioRequest) {
+    public ResponseEntity<DefaultResponse> cadastrarNovoUsuario (@RequestBody UsuarioRequest usuarioRequest) {
         UsuarioResponse usuarioResponse = usuarioService.criarNovoUsuario(usuarioRequest);
 
-        return usuarioResponse;
+        return new ResponseEntity<>(
+                new DefaultResponse<UsuarioResponse>(
+                        HttpStatus.CREATED.value()
+                        , "Usuário cadastrado com sucesso!"
+                        , usuarioResponse
+                ),
+                HttpStatus.CREATED
+        );
     }
 
 }
