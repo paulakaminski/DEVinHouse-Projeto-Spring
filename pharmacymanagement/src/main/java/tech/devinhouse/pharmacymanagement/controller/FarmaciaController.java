@@ -50,7 +50,7 @@ public class FarmaciaController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<DefaultResponse> salvarNovaFarmacia(@RequestBody FarmaciaRequest farmaciaRequest) {
-        FarmaciaResponse farmaciaResponse = farmaciaService.salvarNovaFarmacia(farmaciaRequest);
+        FarmaciaResponse farmaciaResponse = farmaciaService.cadastrarNovaFarmacia(farmaciaRequest);
 
         return new ResponseEntity<>(
                 new DefaultResponse<FarmaciaResponse>(

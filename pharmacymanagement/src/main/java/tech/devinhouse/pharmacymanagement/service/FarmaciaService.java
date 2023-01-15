@@ -8,11 +8,13 @@ import tech.devinhouse.pharmacymanagement.dataprovider.entity.EnderecoEntity;
 import tech.devinhouse.pharmacymanagement.dataprovider.entity.FarmaciaEntity;
 import tech.devinhouse.pharmacymanagement.dataprovider.repository.EnderecoRepository;
 import tech.devinhouse.pharmacymanagement.dataprovider.repository.FarmaciaRepository;
+import tech.devinhouse.pharmacymanagement.exception.BadRequestException;
 import tech.devinhouse.pharmacymanagement.exception.NotFoundException;
 import tech.devinhouse.pharmacymanagement.exception.ServerSideException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FarmaciaService {
@@ -89,8 +91,10 @@ public class FarmaciaService {
 
     }
 
-    public FarmaciaResponse salvarNovaFarmacia(FarmaciaRequest farmaciaRequest) {
+    public FarmaciaResponse cadastrarNovaFarmacia(FarmaciaRequest farmaciaRequest) {
         try {
+            validarSeJaExisteFarmaciaCadastrada(farmaciaRequest);
+
             EnderecoResponse enderecoResponse = cepService.buscaCep(farmaciaRequest.getCep());
             enderecoResponse.setNumero(farmaciaRequest.getNumero());
             enderecoResponse.setComplemento(farmaciaRequest.getComplemento());
@@ -197,6 +201,21 @@ public class FarmaciaService {
             throw new ServerSideException("Erro ao deletar cadastro de farmácia, mensagem localizada: " + e.getLocalizedMessage());
         }
 
+    }
+
+    private void validarSeJaExisteFarmaciaCadastrada(FarmaciaRequest farmaciaRequest) {
+        List<FarmaciaEntity> farmaciaEntities = farmaciaRepository.findAll();
+
+        for (FarmaciaEntity farmaciaEntity:farmaciaEntities) {
+            if (Objects.equals(farmaciaRequest.getCnpj(), farmaciaEntity.getCnpj())) {
+                throw new BadRequestException("Já existe uma farmácia cadastrada com o cnpj informado!");
+            }
+            if (Objects.equals(farmaciaRequest.getCep(), farmaciaEntity.getEnderecoEntity().getCep())
+                    && Objects.equals(farmaciaRequest.getNumero(), farmaciaEntity.getEnderecoEntity().getNumero())
+                    && Objects.equals(farmaciaRequest.getComplemento(), farmaciaEntity.getEnderecoEntity().getComplemento())) {
+                throw new BadRequestException("Já existe uma farmácia cadastrada no endereço informado!");
+            }
+        }
     }
 
 }

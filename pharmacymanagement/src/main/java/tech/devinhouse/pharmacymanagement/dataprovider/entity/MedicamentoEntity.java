@@ -2,6 +2,7 @@ package tech.devinhouse.pharmacymanagement.dataprovider.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,21 +21,26 @@ public class MedicamentoEntity {
     private Long id;
 
     @NotNull
+    @NotEmpty
     private String nome;
 
     @NotNull
+    @NotEmpty
     private String laboratorio;
 
     @NotNull
+    @NotEmpty
     private String dosagem;
 
     private String descricao;
 
     @Column(name = "preco_unitario")
     @NotNull
+    @NotEmpty
     private Double precoUnitario;
 
     @NotNull
+    @NotEmpty
     private String tipo;
 
     public MedicamentoEntity(String nome

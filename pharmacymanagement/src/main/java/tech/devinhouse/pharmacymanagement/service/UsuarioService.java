@@ -1,9 +1,6 @@
 package tech.devinhouse.pharmacymanagement.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import tech.devinhouse.pharmacymanagement.controller.dto.UsuarioRequest;
 import tech.devinhouse.pharmacymanagement.controller.dto.UsuarioResponse;
 import tech.devinhouse.pharmacymanagement.dataprovider.entity.UsuarioEntity;

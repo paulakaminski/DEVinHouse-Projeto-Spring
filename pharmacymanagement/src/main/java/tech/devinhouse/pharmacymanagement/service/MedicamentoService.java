@@ -5,11 +5,13 @@ import tech.devinhouse.pharmacymanagement.controller.dto.MedicamentoRequest;
 import tech.devinhouse.pharmacymanagement.controller.dto.MedicamentoResponse;
 import tech.devinhouse.pharmacymanagement.dataprovider.entity.MedicamentoEntity;
 import tech.devinhouse.pharmacymanagement.dataprovider.repository.MedicamentoRepository;
+import tech.devinhouse.pharmacymanagement.exception.BadRequestException;
 import tech.devinhouse.pharmacymanagement.exception.NotFoundException;
 import tech.devinhouse.pharmacymanagement.exception.ServerSideException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MedicamentoService {
@@ -69,6 +71,8 @@ public class MedicamentoService {
 
     public MedicamentoResponse cadastrarNovoMedicamento(MedicamentoRequest medicamentoRequest) {
         try {
+            validarSeJaExisteMedicamentoCadastrado(medicamentoRequest);
+
             MedicamentoEntity medicamentoEntity = medicamentoRepository.save(
                     new MedicamentoEntity(medicamentoRequest.getNome()
                             , medicamentoRequest.getLaboratorio()
@@ -96,7 +100,7 @@ public class MedicamentoService {
     public MedicamentoResponse atualizarMedicamentoPorId(Long id, MedicamentoRequest medicamentoRequest) {
         try {
             MedicamentoEntity medicamentoEntity = medicamentoRepository.findById(id)
-                    .orElseThrow(()->new NotFoundException("Medicamento não encontrado pelo id: " + id));;
+                    .orElseThrow(()->new NotFoundException("Medicamento não encontrado pelo id: " + id));
 
             medicamentoEntity.setNome(medicamentoRequest.getNome());
             medicamentoEntity.setLaboratorio(medicamentoRequest.getLaboratorio());
@@ -136,6 +140,18 @@ public class MedicamentoService {
             throw new ServerSideException("Erro ao deletar cadastro de medicamento, mensagem localizada: " + e.getLocalizedMessage());
         }
 
+    }
+
+    private void validarSeJaExisteMedicamentoCadastrado(MedicamentoRequest medicamentoRequest) {
+        List<MedicamentoEntity> medicamentoEntities = medicamentoRepository.findAll();
+
+        for (MedicamentoEntity medicamentoEntity:medicamentoEntities) {
+            if (Objects.equals(medicamentoRequest.getNome().toUpperCase(), medicamentoEntity.getNome().toUpperCase())
+                    && Objects.equals(medicamentoRequest.getLaboratorio().toUpperCase(), medicamentoEntity.getLaboratorio().toUpperCase())
+                    && Objects.equals(medicamentoRequest.getDosagem().toUpperCase(), medicamentoEntity.getDosagem().toUpperCase())) {
+                throw new BadRequestException("Já existe um medicamento cadastrado com os dados informados!");
+            }
+        }
     }
 
 }

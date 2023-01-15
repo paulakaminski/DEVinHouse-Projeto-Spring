@@ -20,7 +20,7 @@ public class GlobalHandler {
                 new DefaultErrorResponse(
                         HttpStatus.BAD_REQUEST.value(),
                         e.getMessage(),
-                        HttpStatus.BAD_REQUEST.name(),
+                        HttpStatus.BAD_REQUEST.getReasonPhrase(),
                         e.getCause()
                 ), HttpStatus.BAD_REQUEST
         );
@@ -32,7 +32,7 @@ public class GlobalHandler {
                 new DefaultErrorResponse(
                         HttpStatus.NOT_FOUND.value(),
                         e.getMessage(),
-                        HttpStatus.NOT_FOUND.name(),
+                        HttpStatus.NOT_FOUND.getReasonPhrase(),
                         e.getCause()
                 ), HttpStatus.NOT_FOUND
         );
@@ -44,7 +44,7 @@ public class GlobalHandler {
                 new DefaultErrorResponse(
                         HttpStatus.INTERNAL_SERVER_ERROR.value(),
                         e.getMessage(),
-                        HttpStatus.INTERNAL_SERVER_ERROR.name(),
+                        HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
                         e.getCause()
                 ), HttpStatus.INTERNAL_SERVER_ERROR
         );
@@ -56,7 +56,7 @@ public class GlobalHandler {
                 new DefaultErrorResponse(
                         HttpStatus.BAD_REQUEST.value(),
                         e.getMessage(),
-                        HttpStatus.BAD_REQUEST.name(),
+                        HttpStatus.BAD_REQUEST.getReasonPhrase(),
                         e.getCause()
                 ), HttpStatus.BAD_REQUEST
         );
