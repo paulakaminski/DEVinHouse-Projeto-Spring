@@ -10,8 +10,4 @@ public class ServerSideException extends RuntimeException {
         super(message);
     }
 
-    public ServerSideException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
 }

@@ -7,12 +7,16 @@
     <list default="true" id="fa57cb2d-67d4-4859-b95c-1998f98455b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/FarmaciaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/FarmaciaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/MedicamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/MedicamentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/dto/FarmaciaRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/dto/FarmaciaRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/dto/MedicamentoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/dto/MedicamentoRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/dto/UsuarioRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/dto/UsuarioRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/handler/GlobalHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/controller/handler/GlobalHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/FarmaciaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/FarmaciaEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/MedicamentoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/MedicamentoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/UsuarioEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/dataprovider/entity/UsuarioEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/exception/NotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/exception/ServerSideException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/exception/ServerSideException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/padroes/DefaultErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/padroes/DefaultErrorResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/FarmaciaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/FarmaciaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/MedicamentoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/MedicamentoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacymanagement/src/main/java/tech/devinhouse/pharmacymanagement/service/UsuarioService.java" afterDir="false" />
@@ -98,7 +102,9 @@
       <workItem from="1673287630132" duration="14549000" />
       <workItem from="1673467408496" duration="1156000" />
       <workItem from="1673468598630" duration="19077000" />
-      <workItem from="1673782163657" duration="5846000" />
+      <workItem from="1673782163657" duration="6471000" />
+      <workItem from="1673813930047" duration="4225000" />
+      <workItem from="1673820676107" duration="5723000" />
     </task>
     <servers />
   </component>

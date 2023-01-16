@@ -13,5 +13,5 @@ public class DefaultErrorResponse {
     private int status;
     private String message;
     private String error;
-    private Throwable cause;
+    private String cause;
 }

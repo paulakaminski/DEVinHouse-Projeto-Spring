@@ -7,6 +7,7 @@ import tech.devinhouse.pharmacymanagement.dataprovider.entity.UsuarioEntity;
 import tech.devinhouse.pharmacymanagement.dataprovider.repository.UsuarioRepository;
 import tech.devinhouse.pharmacymanagement.exception.BadRequestException;
 import tech.devinhouse.pharmacymanagement.exception.NotFoundException;
+import tech.devinhouse.pharmacymanagement.exception.ServerSideException;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,22 +42,29 @@ public class UsuarioService {
     }
 
     public UsuarioResponse criarNovoUsuario(UsuarioRequest usuarioRequest) {
-        List<UsuarioEntity> usuarioEntities = usuarioRepository.findAll();
+        try {
+            List<UsuarioEntity> usuarioEntities = usuarioRepository.findAll();
 
-        for (UsuarioEntity usuarioEntity : usuarioEntities) {
-            if(Objects.equals(usuarioRequest.getEmail(), usuarioEntity.getEmail())
-            ) {
-                throw new BadRequestException("Já existe um usuário cadastrado com o email informado!");
+            for (UsuarioEntity usuarioEntity : usuarioEntities) {
+                if(Objects.equals(usuarioRequest.getEmail(), usuarioEntity.getEmail())
+                ) {
+                    throw new BadRequestException("Já existe um usuário cadastrado com o email informado!");
+                }
             }
+
+            UsuarioEntity usuarioEntity = usuarioRepository.save(new UsuarioEntity(usuarioRequest.getEmail()
+                    , usuarioRequest.getSenha()
+            ));
+
+            return new UsuarioResponse(
+                    usuarioEntity.getId()
+            );
+        } catch (NotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ServerSideException("Erro ao cadasrtrar usuário, mensagem localizada: " + e.getLocalizedMessage());
         }
 
-        UsuarioEntity usuarioEntity = usuarioRepository.save(new UsuarioEntity(usuarioRequest.getEmail()
-                , usuarioRequest.getSenha()
-        ));
-
-        return new UsuarioResponse(
-                usuarioEntity.getId()
-        );
     }
 
 }

@@ -1,5 +1,6 @@
 package tech.devinhouse.pharmacymanagement.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,7 @@ public class FarmaciaController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<DefaultResponse> salvarNovaFarmacia(@RequestBody FarmaciaRequest farmaciaRequest) {
+    public ResponseEntity<DefaultResponse> salvarNovaFarmacia(@Valid @RequestBody FarmaciaRequest farmaciaRequest) {
         FarmaciaResponse farmaciaResponse = farmaciaService.cadastrarNovaFarmacia(farmaciaRequest);
 
         return new ResponseEntity<>(
@@ -63,7 +64,7 @@ public class FarmaciaController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<DefaultResponse> atualizarFarmaciaPorId(@PathVariable("id") Long id, @RequestBody FarmaciaRequest farmaciaRequest) {
+    public ResponseEntity<DefaultResponse> atualizarFarmaciaPorId(@Valid @PathVariable("id") Long id, @RequestBody FarmaciaRequest farmaciaRequest) {
         FarmaciaResponse farmaciaResponse = farmaciaService.atualizarFarmaciaPorId(id, farmaciaRequest);
 
         return new ResponseEntity<>(

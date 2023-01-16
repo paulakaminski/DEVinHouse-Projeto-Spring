@@ -2,6 +2,7 @@ package tech.devinhouse.pharmacymanagement.dataprovider.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,6 @@ public class MedicamentoEntity {
 
     @Column(name = "preco_unitario")
     @NotNull
-    @NotEmpty
     private Double precoUnitario;
 
     @NotNull

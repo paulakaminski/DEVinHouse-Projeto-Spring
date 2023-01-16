@@ -142,6 +142,17 @@ public class FarmaciaService {
             FarmaciaEntity farmaciaEntity = farmaciaRepository.findById(id)
                     .orElseThrow(()->new NotFoundException("Farmácia não encontrada pelo id: " + id));
 
+            if(farmaciaRequest.getRazaoSocial().isEmpty()
+                    || farmaciaRequest.getCnpj().isEmpty()
+                    || farmaciaRequest.getNomeFantasia().isEmpty()
+                    || farmaciaRequest.getEmail().isEmpty()
+                    || farmaciaRequest.getTelefoneCelular().isEmpty()
+                    || farmaciaRequest.getCep().isEmpty()
+                    || farmaciaRequest.getLatitude().isEmpty()
+                    || farmaciaRequest.getLongitude().isEmpty()) {
+                throw new BadRequestException("Os campos de preenchimento obrigatório não podem ser nulos!");
+            }
+
             EnderecoEntity enderecoEntity = enderecoRepository.findById(farmaciaEntity.getEnderecoEntity().getId()).get();
 
             EnderecoResponse enderecoResponse = cepService.buscaCep(farmaciaRequest.getCep());

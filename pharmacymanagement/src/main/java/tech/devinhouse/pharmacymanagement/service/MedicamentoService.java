@@ -102,6 +102,13 @@ public class MedicamentoService {
             MedicamentoEntity medicamentoEntity = medicamentoRepository.findById(id)
                     .orElseThrow(()->new NotFoundException("Medicamento não encontrado pelo id: " + id));
 
+            if(medicamentoRequest.getNome().isEmpty()
+                    || medicamentoRequest.getLaboratorio().isEmpty()
+                    || medicamentoRequest.getDosagem().isEmpty()
+                    || medicamentoRequest.getTipo().isEmpty()) {
+                throw new BadRequestException("Os campos de preenchimento obrigatório não podem ser nulos!");
+            }
+
             medicamentoEntity.setNome(medicamentoRequest.getNome());
             medicamentoEntity.setLaboratorio(medicamentoRequest.getLaboratorio());
             medicamentoEntity.setDosagem(medicamentoRequest.getDosagem());

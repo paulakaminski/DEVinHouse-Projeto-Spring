@@ -1,5 +1,6 @@
 package tech.devinhouse.pharmacymanagement.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,7 @@ public class MedicamentoController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<DefaultResponse> cadastrarNovoMedicamento(@RequestBody MedicamentoRequest medicamentoRequest) {
+    public ResponseEntity<DefaultResponse> cadastrarNovoMedicamento(@Valid @RequestBody MedicamentoRequest medicamentoRequest) {
         MedicamentoResponse medicamentoResponse = medicamentoService.cadastrarNovoMedicamento(medicamentoRequest);
 
         return new ResponseEntity<>(

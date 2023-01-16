@@ -2,62 +2,82 @@ package tech.devinhouse.pharmacymanagement.controller.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import tech.devinhouse.pharmacymanagement.exception.BadRequestException;
 import tech.devinhouse.pharmacymanagement.exception.NotFoundException;
 import tech.devinhouse.pharmacymanagement.exception.ServerSideException;
 import tech.devinhouse.pharmacymanagement.padroes.DefaultErrorResponse;
 
+import java.util.List;
+
 
 @ControllerAdvice
 public class GlobalHandler {
 
+    @ResponseBody
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity tratarBadRequestException(Exception e){
+    public ResponseEntity tratarBadRequestException(BadRequestException badRequestException){
         return new ResponseEntity(
                 new DefaultErrorResponse(
                         HttpStatus.BAD_REQUEST.value(),
-                        e.getMessage(),
+                        badRequestException.getMessage(),
                         HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                        e.getCause()
+                        badRequestException.getLocalizedMessage()
                 ), HttpStatus.BAD_REQUEST
         );
     }
 
+    @ResponseBody
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity tratarNotFoundException(Exception e){
+    public ResponseEntity tratarNotFoundException(NotFoundException notFoundException){
         return new ResponseEntity(
                 new DefaultErrorResponse(
                         HttpStatus.NOT_FOUND.value(),
-                        e.getMessage(),
+                        notFoundException.getMessage(),
                         HttpStatus.NOT_FOUND.getReasonPhrase(),
-                        e.getCause()
+                        notFoundException.getLocalizedMessage()
                 ), HttpStatus.NOT_FOUND
         );
     }
 
+    @ResponseBody
     @ExceptionHandler(ServerSideException.class)
-    public ResponseEntity tratarServerSideException(Exception e){
+    public ResponseEntity tratarServerSideException(ServerSideException serverSideException){
+
         return new ResponseEntity(
                 new DefaultErrorResponse(
                         HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                        e.getMessage(),
+                        serverSideException.getMessage(),
                         HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
-                        e.getCause()
+                        serverSideException.getLocalizedMessage()
                 ), HttpStatus.INTERNAL_SERVER_ERROR
         );
     }
 
+    @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity tratarMethodArgumentNotValidException(Exception e){
+    public ResponseEntity tratarMethodArgumentNotValidException(MethodArgumentNotValidException notValidException){
+
+        BindingResult bindingResult = notValidException.getBindingResult();
+        List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
+
+        StringBuilder stringBuilder = new StringBuilder("Os seguintes campos não podem ser nulos: ");
+        for (FieldError fieldError:fieldErrorList) {
+            stringBuilder.append(" | ");
+            stringBuilder.append(fieldError.getField());
+        }
+
         return new ResponseEntity(
                 new DefaultErrorResponse(
                         HttpStatus.BAD_REQUEST.value(),
-                        e.getMessage(),
+                        stringBuilder.toString(),
                         HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                        e.getCause()
+                        notValidException.getLocalizedMessage()
                 ), HttpStatus.BAD_REQUEST
         );
     }
