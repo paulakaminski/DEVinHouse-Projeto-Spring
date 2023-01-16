@@ -1,5 +1,6 @@
 package tech.devinhouse.pharmacymanagement.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<DefaultResponse> cadastrarNovoUsuario (@RequestBody UsuarioRequest usuarioRequest) {
+    public ResponseEntity<DefaultResponse> cadastrarNovoUsuario (@Valid @RequestBody UsuarioRequest usuarioRequest) {
         UsuarioResponse usuarioResponse = usuarioService.criarNovoUsuario(usuarioRequest);
 
         return new ResponseEntity<>(
