@@ -2,6 +2,7 @@ package tech.devinhouse.pharmacymanagement.dataprovider.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,16 +22,20 @@ public class FarmaciaEntity {
 
     @Column(name = "razao_social")
     @NotNull
+    @NotEmpty
     private String razaoSocial;
 
     @NotNull
+    @NotEmpty
     private String cnpj;
 
     @Column(name = "nome_fantasia")
     @NotNull
+    @NotEmpty
     private String nomeFantasia;
 
     @NotNull
+    @NotEmpty
     private String email;
 
     @Column(name = "telefone_fixo")
@@ -38,6 +43,7 @@ public class FarmaciaEntity {
 
     @Column(name = "telefone_celular")
     @NotNull
+    @NotEmpty
     private String telefoneCelular;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -45,4 +51,13 @@ public class FarmaciaEntity {
     @NotNull
     private EnderecoEntity enderecoEntity;
 
+    public FarmaciaEntity(String razaoSocial, String cnpj, String nomeFantasia, String email, String telefoneFixo, String telefoneCelular, EnderecoEntity enderecoEntity) {
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.nomeFantasia = nomeFantasia;
+        this.email = email;
+        this.telefoneFixo = telefoneFixo;
+        this.telefoneCelular = telefoneCelular;
+        this.enderecoEntity = enderecoEntity;
+    }
 }

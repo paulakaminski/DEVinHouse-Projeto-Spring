@@ -1,6 +1,7 @@
 package tech.devinhouse.pharmacymanagement.dataprovider.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,8 +20,15 @@ public class UsuarioEntity {
     private Long id;
 
     @NotNull
+    @NotEmpty
     private String email;
 
     @NotNull
+    @NotEmpty
     private String senha;
+
+    public UsuarioEntity(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
 }
